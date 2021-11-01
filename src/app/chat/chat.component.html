@@ -1,0 +1,19 @@
+<div class="chat-icon" (click)="toggleBox()">
+  <p>...</p>
+</div>
+<div [class]="isContainerShown ? 'box box--active' : 'box'">
+  <div class="box__title">
+    <div class="box__title__text">ChatBot</div>
+  </div>
+  <div class="box__body">
+    <div *ngFor="let message of messages">
+      <div [class]="'box__body__message box__body__message--' + message.sender">
+        {{ message.text }}
+      </div>
+    </div>
+  </div>
+  <div class="box__input">
+    <input placeholder="Enter message..." />
+    <button>Send</button>
+  </div>
+</div>

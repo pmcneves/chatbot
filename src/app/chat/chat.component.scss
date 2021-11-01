@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+$blue: #6b86ad;
+
+.chat-icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 10px 1px #000000;
+  box-shadow: 0px 0px 10px 1px #000000;
+  background-color: hsl(180, 3%, 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  transition: background-color 0.125s ease, box-shadow 0.125s ease;
+  p {
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    height: 70px;
+    transition: color 0.125s ease;
+  }
+  &:hover {
+    box-shadow: inset 0px 0px 10px 1px #000000;
+    background-color: white;
+    p {
+      color: hsl(180, 3%, 70%);
+    }
+  }
+}
+
+.box {
+  position: absolute;
+  background-color: white;
+  bottom: 80px;
+  right: 90px;
+  height: 0;
+  width: 0;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: height 0.5s ease, width 0.5s ease;
+  -webkit-box-shadow: 0px 0px 10px 1px #000000;
+  box-shadow: 0px 0px 10px 1px #000000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  &--active {
+    height: 500px;
+    width: 350px;
+  }
+  &__title {
+    background-color: $blue;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__text {
+      font-size: 20px;
+      color: white;
+    }
+  }
+  &__body {
+    flex-grow: 1;
+    &__message {
+      &__bot {
+      }
+      &__human {
+      }
+    }
+  }
+  &__input {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid $blue;
+    input {
+      width: 80%;
+      height: 100%;
+      padding: 10px;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+    button {
+      cursor: pointer;
+      background-color: $blue;
+      width: 20%;
+      color: white;
+      border: none;
+      height: 100%;
+      transition: background-color 0.125s ease;
+      &:hover {
+        background-color: lighten($blue, 10%);
+      }
+    }
+  }
+}
