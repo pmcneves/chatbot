@@ -1,4 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { MessagesService } from '../services/messages/messages.service';
+
 
 @Component({
   selector: 'app-chat',
@@ -7,16 +16,39 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ChatComponent implements OnInit {
+  public user = 'Pedro';
   public isContainerShown = true;
-  public messages = [
-    { sender: 'bot', text: 'hi' },
-    { sender: 'human', text: 'hello' },
-  ];
-  constructor() {}
+  public newMessage = '';
+  public timeStamp = '';
+  public messages = [];
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  constructor(private changeDetector: ChangeDetectorRef, private messagesService: MessagesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.messagesService.connectToSocket();
+    this.messagesService.messagesList.subscribe(messages => this.messages = messages)
+  }
 
-  toggleBox() {
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
+
+  private scrollToBottom(): void {
+    this.myScrollContainer.nativeElement.scrollTop =
+      this.myScrollContainer.nativeElement.scrollHeight;
+  }
+
+  public toggleBox(): void {
     this.isContainerShown = !this.isContainerShown;
+  }
+
+  public closeBox(): void {
+    this.isContainerShown = false
+  }
+
+  public sendMessage(text = this.newMessage, messageType: "message" | "selected-category" = "message"): void {
+    this.messagesService.sendMessageToSocket({text, messageType})
+    this.newMessage = '';
+    this.scrollToBottom();
   }
 }

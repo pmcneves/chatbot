@@ -1,0 +1,8 @@
+<div class="item-box">
+  <div *ngFor="let item of selectedChoice" class="item">
+    <div class="item__image">
+      <img src="{{ item.image }}" alt="{{ item.title }}" />
+    </div>
+    <div class="item__price">{{ item.price.toFixed(2) }}€</div>
+  </div>
+</div>

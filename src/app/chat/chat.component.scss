@@ -2,7 +2,9 @@
   box-sizing: border-box;
 }
 
+$light-blue: #95d0fc;
 $blue: #6b86ad;
+$radial-background: radial-gradient($light-blue, $blue);
 
 .chat-icon {
   height: 50px;
@@ -10,7 +12,6 @@ $blue: #6b86ad;
   border-radius: 50%;
   -webkit-box-shadow: 0px 0px 10px 1px #000000;
   box-shadow: 0px 0px 10px 1px #000000;
-  background-color: hsl(180, 3%, 70%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +19,10 @@ $blue: #6b86ad;
   bottom: 50px;
   right: 50px;
   cursor: pointer;
-  transition: background-color 0.125s ease, box-shadow 0.125s ease;
+  transition: box-shadow 0.125s ease;
+  &__image {
+    width: 50%;
+  }
   p {
     font-size: 40px;
     color: white;
@@ -26,7 +30,8 @@ $blue: #6b86ad;
     height: 70px;
     transition: color 0.125s ease;
   }
-  &:hover {
+  &:hover,
+  &--active {
     box-shadow: inset 0px 0px 10px 1px #000000;
     background-color: white;
     p {
@@ -42,10 +47,10 @@ $blue: #6b86ad;
   right: 90px;
   height: 0;
   width: 0;
-  border-radius: 10px;
+  border-radius: 100%;
   border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  transition: height 0.5s ease, width 0.5s ease;
+  transition: border-top-left-radius 0.25s ease-in-out, height 0.25s ease-in-out,
+    width 0.25s ease-in-out, border-radius 0.25s ease-in-out;
   -webkit-box-shadow: 0px 0px 10px 1px #000000;
   box-shadow: 0px 0px 10px 1px #000000;
   overflow: hidden;
@@ -54,24 +59,71 @@ $blue: #6b86ad;
   &--active {
     height: 500px;
     width: 350px;
+    border-radius: 10px;
+    .box__body {
+      opacity: 1;
+      transition: display 0.5s ease-in-out;
+    }
   }
   &__title {
-    background-color: $blue;
+    background: $radial-background;
     height: 10%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
     &__text {
       font-size: 20px;
-      color: white;
+    }
+    &__close-btn {
+      width: 10px;
+      cursor: pointer;
     }
   }
   &__body {
-    flex-grow: 1;
-    &__message {
-      &__bot {
+    height: 80%;
+    padding: 20px;
+    overflow-y: auto;
+    opacity: 0;
+    &::-webkit-scrollbar {
+      width: 10px;
+      &-track {
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.1);
       }
-      &__human {
+      &-thumb {
+        border: 1px solid #aaa;
+        background: radial-gradient($light-blue, $blue);
+      }
+    }
+    &__message {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5px;
+      &--bot {
+        align-self: flex-start;
+        background: linear-gradient(150deg, #86ad6b, #b2beb5);
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 15px;
+        border-top-left-radius: 15px;
+      }
+      &--human {
+        align-self: flex-end;
+        background: linear-gradient(190deg, $light-blue, $blue);
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+      &--bot,
+      &--human {
+        padding: 10px;
+        max-width: 90%;
+        word-wrap: break-word;
+        color: #f8f8ff;
+        font-size: 18px;
       }
     }
   }
@@ -90,14 +142,16 @@ $blue: #6b86ad;
     }
     button {
       cursor: pointer;
-      background-color: $blue;
+      background: $radial-background;
       width: 20%;
       color: white;
       border: none;
       height: 100%;
-      transition: background-color 0.125s ease;
+      svg {
+        width: 25px;
+      }
       &:hover {
-        background-color: lighten($blue, 10%);
+        background: $blue;
       }
     }
   }

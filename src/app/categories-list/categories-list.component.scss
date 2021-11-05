@@ -1,0 +1,20 @@
+.category-btn {
+  text-align: center;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  button {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    background: none;
+    border: 1px solid white;
+    -webkit-box-shadow: 0px 0px 5px 1px white;
+    box-shadow: 0px 0px 5px 1px white;
+    &:hover {
+        -webkit-box-shadow: inset 0px 0px 5px 1px white;
+        box-shadow: inset 0px 0px 5px 1px white;
+    }
+  }
+}

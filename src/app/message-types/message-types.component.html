@@ -1,0 +1,10 @@
+<span *ngIf="message.type === 'simple-message'">{{ message.text }}</span>
+<div *ngIf="message.type === 'categories-list'">
+  <span>{{ message.text }}</span>
+  <app-categories-list
+    [choices]="message.choices"
+  ></app-categories-list>
+</div>
+<div *ngIf="message.type=== 'items-list'">
+  <app-items-list [selectedChoice]="message.choices"></app-items-list>
+</div>
