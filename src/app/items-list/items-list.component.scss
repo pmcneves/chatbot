@@ -1,15 +1,20 @@
+@import '../../styles/colors.scss';
+
 .item-box {
+  background-color: $off-white;
     display: grid;
-    grid-template-columns: 60px 60px 60px; 
-    column-gap: 10px;
-    row-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 15px;
+    border-radius: 10px;
 }
 
 .item {
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+  border: 1px solid $bot-background;
+  cursor: pointer;
+  position:relative;
+  overflow: hidden;
   &__image {
+    padding: 5px;
     margin: auto;
     width: 60px;
     height: 60px;
@@ -18,5 +23,23 @@
       height: 100%;
       object-fit: contain;
     }
+  }
+  &:hover {
+    & .item {
+      &__price {
+        transform:translateY(0);
+      }
+    }
+  }
+  &__price {
+    transform:translateY(-100px);
+    width: 100%;
+    text-align: center;
+    background-color: transparentize($color: $global-background, $amount: 0.3);
+    overflow: hidden;
+    font-weight: bold;
+    position: absolute;    
+    bottom: 0;
+    transition: translateY 0.125s ease-in-out;
   }
 }

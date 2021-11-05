@@ -18,6 +18,7 @@ import { MessagesService } from '../services/messages/messages.service';
 export class ChatComponent implements OnInit {
   public user = 'Pedro';
   public isContainerShown = true;
+  public areEmojisShown = false;
   public newMessage = '';
   public timeStamp = '';
   public messages = [];
@@ -50,5 +51,13 @@ export class ChatComponent implements OnInit {
     this.messagesService.sendMessageToSocket({text, messageType})
     this.newMessage = '';
     this.scrollToBottom();
+  }
+
+  public toggleEmojis() {
+    this.areEmojisShown = !this.areEmojisShown;
+  }
+
+  public addEmoji(emoji: any):void {
+    console.log(emoji)
   }
 }

@@ -1,10 +1,9 @@
+@import '../../styles/colors.scss';
+@import '~@ctrl/ngx-emoji-mart/picker';
+
 * {
   box-sizing: border-box;
 }
-
-$light-blue: #95d0fc;
-$blue: #6b86ad;
-$radial-background: radial-gradient($light-blue, $blue);
 
 .chat-icon {
   height: 50px;
@@ -34,9 +33,6 @@ $radial-background: radial-gradient($light-blue, $blue);
   &--active {
     box-shadow: inset 0px 0px 10px 1px #000000;
     background-color: white;
-    p {
-      color: hsl(180, 3%, 70%);
-    }
   }
 }
 
@@ -66,7 +62,7 @@ $radial-background: radial-gradient($light-blue, $blue);
     }
   }
   &__title {
-    background: $radial-background;
+    background: $global-background;
     height: 10%;
     display: flex;
     align-items: center;
@@ -79,6 +75,7 @@ $radial-background: radial-gradient($light-blue, $blue);
     &__close-btn {
       width: 10px;
       cursor: pointer;
+      display: flex;
     }
   }
   &__body {
@@ -86,6 +83,7 @@ $radial-background: radial-gradient($light-blue, $blue);
     padding: 20px;
     overflow-y: auto;
     opacity: 0;
+    background-color: $off-white;
     &::-webkit-scrollbar {
       width: 10px;
       &-track {
@@ -94,36 +92,36 @@ $radial-background: radial-gradient($light-blue, $blue);
       }
       &-thumb {
         border: 1px solid #aaa;
-        background: radial-gradient($light-blue, $blue);
+        background-color: $global-background;
       }
     }
     &__message {
       display: flex;
       flex-direction: column;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       &--bot {
         align-self: flex-start;
-        background: linear-gradient(150deg, #86ad6b, #b2beb5);
+        background-color: $bot-background;
         border-top-right-radius: 20px;
         border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 15px;
-        border-top-left-radius: 15px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
       }
       &--human {
         align-self: flex-end;
-        background: linear-gradient(190deg, $light-blue, $blue);
+        background-color: $human-background;
         border-top-left-radius: 20px;
         border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 15px;
-        border-top-right-radius: 15px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
       }
       &--bot,
       &--human {
         padding: 10px;
         max-width: 90%;
         word-wrap: break-word;
-        color: #f8f8ff;
-        font-size: 18px;
+        color: $off-white;
+        font-size: 15px;
       }
     }
   }
@@ -131,27 +129,37 @@ $radial-background: radial-gradient($light-blue, $blue);
     height: 10%;
     display: flex;
     align-items: center;
-    border-top: 1px solid $blue;
+    border-top: 1px solid $global-background;
+    position: relative;
     input {
-      width: 80%;
+      width: 85%;
       height: 100%;
       padding: 10px;
+      font-family: "Montserrat-Regular", sans-serif;
       &:focus-visible {
         outline: none;
       }
     }
+    &__emoji-mart {
+      position: absolute;
+      bottom: 0;
+      right:0;
+    }
     button {
       cursor: pointer;
-      background: $radial-background;
-      width: 20%;
-      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $global-background;
+      width: 15%;
+      color: $off-white;
       border: none;
       height: 100%;
       svg {
-        width: 25px;
+        width: 20px;
       }
       &:hover {
-        background: $blue;
+        background: transparentize($color: $global-background, $amount: 0.2);
       }
     }
   }

@@ -1,3 +1,5 @@
-<div *ngFor="let choice of choices" class="category-btn">
-    <button (click)="selectCategory(choice)">{{choice}}</button>
+<div class="categories-list">
+    <div *ngFor="let choice of choices" class="category-btn">
+        <button (click)="selectCategory(choice)">{{choice}}</button>
+    </div>
 </div>

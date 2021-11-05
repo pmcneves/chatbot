@@ -9,7 +9,7 @@
     "test": "ng test",
     "build:elements": "ng build --prod --output-hashing none && node elements_generator.js",
     "dev": "nodemon backend/index.ts",
-    "start:front-back":"concurrently \"npm start\" \"npm run dev\""
+    "start:front-back": "concurrently \"npm start\" \"npm run dev\""
   },
   "private": true,
   "dependencies": {
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ctrl/ngx-emoji-mart": "^6.0.1",
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "document-register-element": "^1.7.2",

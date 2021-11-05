@@ -11,7 +11,8 @@ export class MessagesService {
   constructor(private socket: Socket) {}
 
   connectToSocket() {
-    this.socket.emit('join');
+    // TODO, get username
+    this.socket.emit('join', 'Pedro');
     this.socket.on('message', (messageObj) =>
       this.sendMessageToChat(messageObj)
     );
